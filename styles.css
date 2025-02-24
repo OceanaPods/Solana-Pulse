@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #1A1A1A;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Solar Core */
+.solar-core {
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, #00D4B5 10%, transparent 70%);
+    border-radius: 50%;
+    position: relative;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 212, 181, 0.3);
+    border-radius: 50%;
+    animation: ring-pulse 4s infinite ease-out;
+}
+
+.pulse-ring.delay {
+    animation-delay: 1s;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes ring-pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+/* Hexagon Panels */
+.hexagon {
+    position: absolute;
+    width: 80px;
+    height: 92px;
+    background: rgba(123, 0, 255, 0.2);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #E0E0E0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.hexagon:hover {
+    transform: scale(1.1);
+    background: rgba(123, 0, 255, 0.5);
+}
+
+.hexagon::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -30px;
+    color: #00D4B5;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.hexagon:hover::after {
+    opacity: 1;
+}
+
+/* Positioning Hexagons in Orbit */
+.wallet { top: 20%; left: 40%; }
+.transactions { top: 30%; left: 60%; }
+.staking { top: 50%; left: 70%; }
+.dapps { top: 70%; left: 60%; }
+.stats { top: 60%; left: 40%; }
+
+/* Comet Animation */
+.comet {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #FF9500;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #FF9500;
+    animation: comet-travel 2s infinite linear;
+}
+
+@keyframes comet-travel {
+    0% { transform: translate(0, 0); opacity: 1; }
+    100% { transform: translate(300px, 200px); opacity: 0; }
+}
